@@ -797,12 +797,12 @@ var run = function() {
         },
         iterate: function () {
             var subOptions = options.auto.options;
+            if (options.auto.craft.enabled)                              {this.craft()};
             if (subOptions.enabled && subOptions.items.observe.enabled)  {this.observeStars()};
             if (options.auto.upgrade.enabled)                            {this.upgrade()};
             if (subOptions.enabled && subOptions.items.festival.enabled) {this.holdFestival()};
             if (options.auto.build.enabled)                              {this.build()};
             if (options.auto.space.enabled)                              {this.space()};
-            if (options.auto.craft.enabled)                              {this.craft()};
             if (subOptions.enabled && subOptions.items.hunt.enabled)     {this.hunt()};
             if (options.auto.trade.enabled)                              {this.trade()};
             if (options.auto.faith.enabled)                              {this.worship()};
@@ -1291,9 +1291,14 @@ var run = function() {
                 var craft = crafts[name];
                 var current = !craft.max ? false : manager.getResource(name);
                 var require = !craft.require ? false : manager.getResource(craft.require);
+
+
+
                 var season = game.calendar.season;
                 var amount = 0;
                 // Ensure that we have reached our cap
+                if craft == 'manuscript':
+                    console.log(current, current.value)
                 if (current && current.value > craft.max) continue;
                 if (!manager.singleCraftPossible(name)) {continue;}
                 // Craft the resource if we meet the trigger requirement
