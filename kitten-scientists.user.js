@@ -1297,8 +1297,7 @@ var run = function() {
                 var season = game.calendar.season;
                 var amount = 0;
                 // Ensure that we have reached our cap
-                if craft == 'manuscript':
-                    console.log(current, current.value)
+                if (craft == 'manuscript') console.log('manuscripts', current, current.value);
                 if (current && current.value > craft.max) continue;
                 if (!manager.singleCraftPossible(name)) {continue;}
                 // Craft the resource if we meet the trigger requirement
